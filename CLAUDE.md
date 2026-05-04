@@ -16,6 +16,9 @@ uv run 0001_contains_duplicate.py
 uv run ruff check .
 uv run ruff format .
 
+# Verificação de tipos
+uv run mypy .
+
 # Adicionar dependência de desenvolvimento
 uv add --dev <pacote>
 ```
