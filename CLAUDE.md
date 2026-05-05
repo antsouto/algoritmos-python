@@ -9,8 +9,11 @@ Repositório de estudo de algoritmos e estruturas de dados em Python, focado em 
 ## Comandos
 
 ```bash
-# Rodar uma solução diretamente (asserts inline)
-uv run 0001_contains_duplicate.py
+# Rodar os testes de um arquivo específico
+uv run pytest 0125_valid_palindrome.py -v
+
+# Rodar todos os testes do repositório
+uv run pytest
 
 # Lint + format
 uv run ruff check .
@@ -26,7 +29,7 @@ uv add --dev <pacote>
 ## Convenção de arquivos
 
 - Nome: `NNNN_nome_do_problema.py` onde `NNNN` é o número do LeetCode com zeros à esquerda.
-- Cada arquivo é autossuficiente: definição da função + bloco `if __name__ == "__main__"` com `assert`s cobrindo edge cases.
+- Cada arquivo é autossuficiente: definição da função + função `test_<nome>()` com asserts cobrindo edge cases.
 - Docstring no topo: enunciado resumido, URL do problema, complexidade Time/Space.
 
 ## Padrão de solução
@@ -45,11 +48,11 @@ Space: O(?)
 def nome_funcao(param: tipo) -> tipo:
     ...
 
-if __name__ == "__main__":
+
+def test_nome_funcao() -> None:
     assert nome_funcao(...) == ...
-    print("ok")
 ```
 
 - Type hints obrigatórios (`list[int]`, não `List[int]`).
-- Sem pytest — asserts inline são suficientes para exploração rápida.
+- Testes com pytest: `uv run pytest NNNN_arquivo.py -v`.
 - Se uma solução tiver múltiplas abordagens (brute force → otimizada), definir funções separadas com sufixo `_v1`, `_v2` e comentar a complexidade de cada uma.
