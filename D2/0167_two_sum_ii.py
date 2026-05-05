@@ -7,22 +7,12 @@ encontre dois números que somam ao target. Retorne os índices 1-based
 [index1, index2] com index1 < index2. Exatamente uma solução existe.
 Não pode usar o mesmo elemento duas vezes.
 
-Time:  O(?)
-Space: O(?)
+Time:  O(n)
+Space: O(1)
 """
 
 
-def two_sum_v1(numbers: list[int], target: int) -> list[int]:
-    """Hashmap. Time O(n) / Space O(n)."""
-    hashmap = {num: i for i, num in enumerate(numbers)}
-    for i, num in enumerate(numbers):
-        complement = target - num
-        if complement in hashmap and hashmap[complement] != i:
-            return sorted([i + 1, hashmap[complement] + 1])
-
-
 def two_sum(numbers: list[int], target: int) -> list[int]:
-    """Two pointers. Time O(n) / Space O(1)."""
     l, r = 0, len(numbers) - 1
     while l < r:
         s = numbers[l] + numbers[r]
